@@ -7,7 +7,7 @@ var parser = new Parser();
 var dailyUpdate = {};
 
 // fetch invictus games rss feed
-(async () => {
+var fetchUpdate = async () => {
   try {
     var feed = await parser.parseURL('https://rss.whooshkaa.com/rss/podcast/id/4665?format=flashbriefing');
 
@@ -23,7 +23,7 @@ var dailyUpdate = {};
   }
 
   return dailyUpdate;
-})();
+};
 
 var streamInfo = {
   title: 'ABC Invictus Games',
@@ -52,11 +52,18 @@ var handlers = {
   'LaunchRequest': function() {
     this.emit('PlayStream');
   },
-  'PlayStream': function() {
-    this.response.speak('Here is your ABC Invictus Games update.').audioPlayerPlay('REPLACE_ALL', streamInfo.url, streamInfo.url, null, 0);
-    this.emit(':responseReady');
+  'PlayStream': async function() {
+    try {
+      await fetchUpdate();
+      console.log('stream info', streamInfo);
+      this.response.speak('Here is your ABC Invictus Games update.').audioPlayerPlay('REPLACE_ALL', streamInfo.url, streamInfo.url, null, 0);
+      this.emit(':responseReady');
+    } catch (err) {
+      this.response.speak('Sorry. Something went wrong.');
+      this.emit(':responseReady');
+    }
   },
-  'AMAZON.HelpIntent': function() {
+  'AMAZON.HelpIntent': function() { 
     // skill help logic goes here
     this.emit(':responseReady');
   },
@@ -136,15 +143,9 @@ var audioEventHandlers = {
   'PlaybackStopped': function() {
     this.emit(':responseReady');
   },
-  'PlaybackNearlyFinished': async function() {
-    try {
-      await fetchRssFeed();
-
-      this.response.audioPlayerPlay('REPLACE_ALL', streamInfo.url, streamInfo.url, null, 0);
-      this.emit(':responseReady');
-    } catch (error) {
-      this.response.speak('Sorry. Something went wrong.');
-    }
+  'PlaybackNearlyFinished': function() {
+    this.response.audioPlayerPlay('REPLACE_ALL', streamInfo.url, streamInfo.url, null, 0);
+    this.emit(':responseReady');
   },
   'PlaybackFailed': function() {
     this.response.audioPlayerClearQueue('CLEAR_ENQUEUED');
