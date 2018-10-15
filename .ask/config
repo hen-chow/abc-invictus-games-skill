@@ -1,0 +1,40 @@
+{
+  "deploy_settings": {
+    "default": {
+      "skill_id": "amzn1.ask.skill.3ee78191-fa40-47b2-8278-c8695d0093b9",
+      "was_cloned": false,
+      "resources": {
+        "manifest": {
+          "eTag": "c8d18ad88e9d9ab92fdfb7ac295474cc"
+        },
+        "lambda": [
+          {
+            "arn": "arn:aws:lambda:us-east-1:367782331462:function:ask-abc-invictus-games-default",
+            "awsRegion": "us-east-1",
+            "functionName": "arn:aws:lambda:us-east-1:367782331462:function:ask-abc-invictus-games-default",
+            "alexaUsage": [
+              "custom/default"
+            ],
+            "revisionId": "9a9a4468-c033-4054-a4d5-6e2f32f41fb7"
+          }
+        ],
+        "interactionModel": {
+          "en-AU": {
+            "eTag": "41b44682e8a28eceb01c5e05e9ae08fa"
+          }
+        }
+      },
+      "merge": {
+        "manifest": {
+          "apis": {
+            "custom": {
+              "endpoint": {
+                "uri": "arn:aws:lambda:us-east-1:367782331462:function:ask-abc-invictus-games-default"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

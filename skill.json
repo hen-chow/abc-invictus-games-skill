@@ -1,0 +1,39 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-AU": {
+          "summary": "Alexa skill for ABC Invictus Games.",
+          "examplePhrases": [
+            "Alexa, open ABC Invictus Games",
+            "Alexa, play ABC Invictus Games",
+            "Alexa, ask ABC Invictus Games to play"
+          ],
+          "keywords": [
+            "audio streaming",
+            "invictus games update",
+            "live update"
+          ],
+          "name": "ABC Invictus Games",
+          "description": "Alexa skill for ABC Invictus Games."
+        }
+      },
+      "testingInstructions": "No special instructions",
+      "category": "STREAMING_SERVICE",
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "sourceDir": "lambda/custom"
+        },
+        "interfaces": [
+          {
+            "type": "AUDIO_PLAYER"
+          }
+        ]
+      }
+    },
+    "manifestVersion": "1.0"
+  }
+}

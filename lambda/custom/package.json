@@ -1,0 +1,21 @@
+{
+  "name": "ABC Invictus Games",
+  "version": "1.0.0",
+  "description": "Alexa skill for ABC Invictus Games.",
+  "main": "index.js",
+  "keywords": [
+    "alexa",
+    "skill",
+    "audio streaming",
+    "abc invictus games"
+  ],
+  "author": "Hen Chow",
+  "dependencies": {
+    "alexa-sdk": "^1.0.25",
+    "rss-parser": "^3.5.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hen-chow/abc-invictus-games"
+  }
+}
